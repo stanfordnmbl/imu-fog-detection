@@ -272,10 +272,6 @@ def compute_ICC(metrics_df, metric):
     """Compute intraclass correlation coefficient between model- and
     human-determined metrics.
 
-    TODO subject or walk as target? If you revert to target, need to
-    have target as argument (since you use walk as target for
-    optimizing threshold)
-
     Args:
         metrics_df (pd DataFrame): consists of threshold (that
             optimizes metric) and corresponding model- and human-
@@ -327,7 +323,6 @@ def get_optimal_thresh(subject, metrics_df):
     max_ICC_p_FOG = -1
     max_ICC_n_FOG = -1
     for thresh in thresholds:
-        print(thresh)
         thresh_rows = subject_metrics['thresh']==thresh
         thresh_metrics = subject_metrics[thresh_rows]
 
@@ -360,7 +355,7 @@ def plot_clinical_metrics(summary_metrics, result_dir):
     COLORS = ['#CC3311', '#EE7733', '#DDCC77', '#999933', '#117733',
         '#0077BB', '#882255']
 
-    fig, ax = plt.subplots(1, 2, figsize=(8,4))# TODO, dpi=1000)
+    fig, ax = plt.subplots(1, 2, figsize=(8,4), dpi=300)
     for i in [0,1]:
         ax[i].set_xlabel('model')
         ax[i].spines['top'].set_visible(False)
@@ -438,8 +433,7 @@ def main():
     THRESHOLDS = np.linspace(0, 1, 101)
 
     data = read_data(DATA_DIR)
-    # summary_metrics = get_summary_metrics(data, THRESHOLDS, VERBOSE) # TODO uncomment
-    summary_metrics = pd.read_csv(RESULT_DIR + 'ankle_metrics_over_thresh.csv') # TODO remove and delete file
+    summary_metrics = get_summary_metrics(data, THRESHOLDS, VERBOSE)
     plot_clinical_metrics(summary_metrics, RESULT_DIR)
     return
 
