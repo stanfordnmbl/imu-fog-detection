@@ -106,7 +106,7 @@ def main():
     DATA_DIR = '../data/'
     RESULT_DIR = '../results/'
     GENERATE_DATA = True
-    ITER = 15 # TODO 30
+    ITER = 30
     BATCH_SIZE = 512
     EPOCHS = 1000
     VERBOSE = False
@@ -146,9 +146,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-"""TODO:
-    Update Hannah's files
-    update data files to only include 0/1 labels (change all 2s to 0s)
-    readme
-
-"""
+    
