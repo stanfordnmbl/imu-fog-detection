@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import pingouin as pg
 
-from crossval import losocv_split, create_dsets
+from crossval import losocv_split
 from datapreprocessing import selectFeats
 from model import load_model_and_weights, make_predictions
 from readwrite import read_data
