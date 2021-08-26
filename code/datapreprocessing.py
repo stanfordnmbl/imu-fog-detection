@@ -121,10 +121,6 @@ def build_matrices(read_dir, write_dir, window_overlap, verbose=False):
             this_window_data = this_window_data[:,:-1] # remove timestep labels
             this_window_data = normalize(this_window_data)
 
-            # TODO remove this section once data files are updated
-            if window_label==2:
-                window_label = 0
-
             # add real window and augmented window(s)
             for j in range(N_AUGMENTATION+1):
                 if j == 0:
