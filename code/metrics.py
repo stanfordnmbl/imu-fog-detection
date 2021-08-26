@@ -53,21 +53,3 @@ def compute_total_ap(labels):
     precision, recall, _ = precision_recall_curve(ytrue, yprobas)
     total_ap = auc(recall, precision)
     return total_ppv, total_ap
-
-
-# TODO DELETE?
-# def calculate_youdens_index(labels):
-#     """Compute threshold defined by Youden's J statistic.
-    
-#     Args:
-#         labels (df): columns include 'probas' (from model) and 'true'
-#             (ground truth). One row for each fold.
-
-#     Returns:
-#         threshold (float): Youden's index threshold.
-#     """
-#     labels_true = labels['true']
-#     labels_probas = labels['probas']
-#     fpr, tpr, thresholds = roc_curve(labels_true, labels_probas)
-#     threshold = thresholds[np.argmax(tpr - fpr)]
-#     return threshold
