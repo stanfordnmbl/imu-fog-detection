@@ -109,7 +109,7 @@ def main():
     ITER = 30
     BATCH_SIZE = 512
     EPOCHS = 1000
-    VERBOSE = False
+    VERBOSE = True
 
     raw_data_dir = DATA_DIR + 'raw/'
     preprocessed_data_dir = DATA_DIR + 'preprocessed/'
