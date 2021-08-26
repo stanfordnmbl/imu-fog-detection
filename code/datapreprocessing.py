@@ -81,7 +81,7 @@ def build_matrices(read_dir, write_dir, window_overlap, verbose=False):
     FREQ_SAMPLED = 128 # Hz
     FREQ_DESIRED = 64 # Hz
     WINDOW_DUR = 2 # s
-    N_AUGMENTATION = 1
+    N_AUGMENTATION = 1 # integer
 
     window_data = []
     window_labels = []
@@ -171,8 +171,8 @@ def rotate(X):
         X (np array): rotated data.
 
     """
-    N_AXES = 3
-    N_DATA_STREAMS = 6
+    N_AXES = 3 # x, y, z
+    N_DATA_STREAMS = 6 # ax, ay, az, gx, gy, gz
     MAX_ROT = np.pi/12
 
     n_col = X.shape[1]
