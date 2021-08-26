@@ -168,7 +168,6 @@ def run_model(train_dset, test_dset, subject, result_dir, batch_size,
     n_features = ex_X.shape[2]
 
     model = init_model(n_timesteps, n_features)
-    print('Completed init model')
     opt = tf.keras.optimizers.Adam(learning_rate=LR)
     auroc = tf.keras.metrics.AUC(name='auc')
     ap = tf.keras.metrics.AUC(curve='PR', name='ap') # avg precision
