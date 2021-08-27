@@ -31,7 +31,7 @@ All raw IMU data is formatted in .xslx files (see data/raw). One file exists for
 
   
 
-## Run IMU sensor experiments [experiments.py](experiments.py)
+## Run IMU sensor experiments [code/experiments.py](experiments.py)
 
 This script creates windowed examples and trains models across all sensor sets specified in the configuration file. Models, weights, and classification metrics are saved to a results directory. Note, on a standard laptop, this could take several hours per sensor set. Run with the commands:
 
