@@ -87,7 +87,7 @@ python clinical_metrics.py
 
 The following constants are found across our code and may be important to consider in your own use:
 
--   In datapreprocessing.py:
+-   In [datapreprocessing.py](code/data_preprocessing.py):
     
 
 -   FREQ_SAMPLED and FREQ_DESIRED, for resampling purposes.
