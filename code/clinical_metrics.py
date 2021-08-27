@@ -91,7 +91,7 @@ def predict_ankle_model(data):
     labels = make_predictions(model, test_dset)
     return labels
 
-def predict_lumbar_ankles_model(data)
+def predict_lumbar_ankles_model(data):
     """Generate lumbar + 2 ankles model predictions for data.
 
     Args:
@@ -276,11 +276,12 @@ def compute_clinical_metrics(labels):
     return metrics
 
 
-def get_summary_metrics(data, thresholds, verbose):
+def get_summary_metrics(data, sensor_set, thresholds, verbose):
     """Compute clinical metrics across thresholds for the dataset.
 
     Args:
         data (dict): holds all data matrices/lists.
+        sensor_set (str): set for which to make model predictions.
         thresholds (list): thresholds over which to compute metrics.
         verbose (bool): True to print test statements, False otherwise.
 
@@ -304,8 +305,14 @@ def get_summary_metrics(data, thresholds, verbose):
             print(f'Threshold {i+1} of {len(thresholds)}')
         for walk in walks:
             walk_data = get_walk_data(walk, data)
-#             labels = predict_ankle_model(walk_data)
-            lables = predict_lumbar_ankles_model(walk_data)
+
+            if sensor_set == 'sensors01_rankle':
+                labels = predict_ankle_model(walk_data)
+            elif sensor_set == 'sensors03_lumbar_ankles':
+                labels = predict_lumbar_ankles_model(walk_data)
+            else:
+                raise Exception('Unexpected sensor set. Please initialize.')
+
             labels = get_binary_predictions(labels, thresh)
             walk_metrics = compute_clinical_metrics(labels)
             walk_metrics['thresh'] = [thresh]
@@ -476,16 +483,19 @@ def main():
     Generate summary figure.
     """
     DATA_DIR = '../data/preprocessed/imus6_subjects7/'
-#     RESULT_DIR = '../results/imus6_subjects7/sensors01_rankle/'\
-#         'iteration0/'
-    RESULT_DIR = '../results/imus6_subjects7/sensors03_lumbar_ankles/'\
-        'iteration0/'
-    VERBOSE = True
+    SENSOR_SETS = ['sensors01_rankle', 'sensors03_lumbar_ankles']
     THRESHOLDS = np.linspace(0, 1, 101)
+    VERBOSE = True
 
     data = read_data(DATA_DIR)
-    summary_metrics = get_summary_metrics(data, THRESHOLDS, VERBOSE)
-    plot_clinical_metrics(summary_metrics, RESULT_DIR)
+    for sensor_set in SENSOR_SETS:
+        if VERBOSE:
+            print(sensor_set)
+        summary_metrics = get_summary_metrics(data, sensor_set, 
+            THRESHOLDS, VERBOSE)
+        result_dir = '../results/imus6_subjects7/' + sensor_set \
+            + '/iteration0/'
+        plot_clinical_metrics(summary_metrics, result_dir)
     return
 
 
