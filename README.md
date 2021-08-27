@@ -58,15 +58,16 @@ cd code
 python plots.py
 ```
 
-![](figures/classification_metrics.png)
-
-[Example of summary figure of classification metrics from [experiments.py](code/experiments.py)]
+<p align="center">
+    <img src="figures/classification_metrics.png">
+    Example of summary figure of classification metrics from [experiments.py](code/experiments.py)
+</p>
 
   
 
 ## Calculate clinical metrics [clinical_metrics.py](code/clinical_metrics.py)
 
-This script computes clinical metrics (percent time FOG and number of FOG events) from the single ankle IMU model. It then computes the intraclass correlation coefficient between the ground truth (human) and model-based clinical metrics. A summary figure is generated, and results are saved to the appropriate results directory. Note, on a standard laptop, this could take up to about 30 minutes. Run with the commands:
+This script computes clinical metrics (percent time FOG and number of FOG events) from specified models. It then computes the intraclass correlation coefficient between the ground truth (human) and model-based clinical metrics. A summary figure is generated, and results are saved to the appropriate results directory. Note, on a standard laptop, this could take up to about 30 minutes per sensor set. Run with the commands:
 
 ```
 cd code
