@@ -36,7 +36,7 @@ subjectID | time (s)  | (6 data channels: ax, ay, az, gx, gy, gz) x (number of I
 --|--|--|--
 
 
-Accelerometer (ax, ay, az) units are $\mathrm{m/s}^2$, and gyroscope (gx, gy, gz) units are rad/s. A configuration file is necessary to indicate sensor configurations (see data/imus6_subjects7_configs.xlsx). Column names in the configuration file must be substrings of column names in the raw IMU data files. If the code base will be used, unaltered, .xlsx files will need to be formatted as stated above.
+Accelerometer (ax, ay, az) units are $`\mathrm{m/s}^2`$, and gyroscope (gx, gy, gz) units are rad/s. A configuration file is necessary to indicate sensor configurations (see data/imus6_subjects7_configs.xlsx). Column names in the configuration file must be substrings of column names in the raw IMU data files. If the code base will be used, unaltered, .xlsx files will need to be formatted as stated above.
 
   
 
