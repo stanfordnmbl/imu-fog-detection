@@ -31,7 +31,7 @@ All raw IMU data is formatted in .xslx files (see data/raw). One file exists for
 
   
 
-## Run IMU sensor experiments [experiments.py]
+## Run IMU sensor experiments [experiments.py](experiments.py)
 
 This script creates windowed examples and trains models across all sensor sets specified in the configuration file. Models, weights, and classification metrics are saved to a results directory. Note, on a standard laptop, this could take several hours per sensor set. Run with the commands:
 
@@ -45,7 +45,7 @@ python experiments.py
 
   
 
-## Plot classification metrics [plots.py]
+## Plot classification metrics [plots.py](plots.py)
 
 This script aggregates classification metrics (area under the receiver operating characteristic and average precision) across sensor sets and generates a summary figure. Top-ranked participant sets, as identified through the survey described in the accompanying paper, are also indicated. Run with the commands:
 
