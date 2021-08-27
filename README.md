@@ -16,7 +16,9 @@ Currently, this repo can only be built from source. To do so,
     ```
     
 2.  Download the prerequisite packages:  
-    ```pip install -r requirements.txt```
+    ```
+    pip install -r requirements.txt
+    ```
     
 
   
