@@ -45,7 +45,7 @@ python experiments.py
 
   
 
-## Plot classification metrics [plots.py](plots.py)
+## Plot classification metrics [plots.py](code/plots.py)
 
 This script aggregates classification metrics (area under the receiver operating characteristic and average precision) across sensor sets and generates a summary figure. Top-ranked participant sets, as identified through the survey described in the accompanying paper, are also indicated. Run with the commands:
 
@@ -63,7 +63,7 @@ python plots.py
 
   
 
-## Calculate clinical metrics [clinical_metrics.py]
+## Calculate clinical metrics [clinical_metrics.py](code/clinical_metrics.py)
 
 This script computes clinical metrics (percent time FOG and number of FOG events) from the single ankle IMU model. It then computes the intraclass correlation coefficient between the ground truth (human) and model-based clinical metrics. A summary figure is generated, and results are saved to the appropriate results directory. Note, on a standard laptop, this could take up to about 30 minutes. Run with the commands:
 
@@ -126,4 +126,4 @@ Please cite our paper in your publications if our repository helps your research
 
 # License
 
-Distributed under the BSD 3-clause License. See [LICENSE] for more information.
+Distributed under the BSD 3-clause License. See [LICENSE](/LICENSE.txt) for more information.
