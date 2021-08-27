@@ -1,3 +1,26 @@
+# Copyright (c) 2021, Stanford Neuromuscular Biomechanics Laboratory
+# All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without modification, 
+# are permitted provided that the following conditions are met:
+
+# 1. Redistributions of source code must retain the above copyright notice, 
+# this list of conditions and the following disclaimer.
+
+# 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer 
+# in the documentation and/or other materials provided with the distribution.
+
+# 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived 
+# from this software without specific prior written permission.
+
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+# INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
+# OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -66,6 +89,29 @@ def predict_ankle_model(data):
     labels = make_predictions(model, test_dset)
     return labels
 
+def predict_lumbar_ankles_model(data)
+    """Generate lumbar + 2 ankles model predictions for data.
+
+    Args:
+        data (dict): all data matrices/lists for a single subject.
+
+    Returns:
+        labels (dict): columns include 'probas' (from model) and 'true'
+            (ground truth). One row for each fold.
+
+    """
+    RESULT_DIR = '../results/imus6_subjects7/sensors03_lumbar_ankles/'\
+                     'iteration0/'
+
+    data = selectFeats(data, ['lumbar','ankle_r','ankle_l'])
+    test_dset = (data['X'], data['y'])
+
+    subject = str(int(data['subjectID']))
+    model = load_model_and_weights(subject, RESULT_DIR)
+
+    labels = make_predictions(model, test_dset)
+    return labels
+    
 
 def smooth_labels(labels_probas, n_samples):
     """Apply moving average filter.
@@ -256,7 +302,8 @@ def get_summary_metrics(data, thresholds, verbose):
             print(f'Threshold {i+1} of {len(thresholds)}')
         for walk in walks:
             walk_data = get_walk_data(walk, data)
-            labels = predict_ankle_model(walk_data)
+#             labels = predict_ankle_model(walk_data)
+            lables = predict_lumbar_ankles_model(walk_data)
             labels = get_binary_predictions(labels, thresh)
             walk_metrics = compute_clinical_metrics(labels)
             walk_metrics['thresh'] = [thresh]
@@ -427,7 +474,9 @@ def main():
     Generate summary figure.
     """
     DATA_DIR = '../data/preprocessed/imus6_subjects7/'
-    RESULT_DIR = '../results/imus6_subjects7/sensors01_rankle/'\
+#     RESULT_DIR = '../results/imus6_subjects7/sensors01_rankle/'\
+#         'iteration0/'
+    RESULT_DIR = '../results/imus6_subjects7/sensors03_lumbar_ankles/'\
         'iteration0/'
     VERBOSE = True
     THRESHOLDS = np.linspace(0, 1, 101)
