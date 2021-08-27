@@ -87,7 +87,7 @@ python clinical_metrics.py
 
 The following constants are found across our code and may be important to consider in your own use:
 
--   In [datapreprocessing.py](code/data_preprocessing.py):
+-   In [datapreprocessing.py](code/datapreprocessing.py):
     
 
 -   FREQ_SAMPLED and FREQ_DESIRED, for resampling purposes.
@@ -97,7 +97,7 @@ The following constants are found across our code and may be important to consid
 -   N_AXES and N_DATA_STREAMS, dependent on the data streams included from the IMUs.
     
 
--   In experiments.py:
+-   In [experiments.py](code/experiments.py):
     
 
 -   WINDOW_OVERLAPS, a parameter that can be increased to generate more examples or decreased to generate fewer examples.
