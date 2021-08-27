@@ -68,8 +68,7 @@ def get_sample_weights(y, subjectIDs):
     return sample_weights
 
 
-def create_dsets(data, train_idx, test_idx, batch_size=512,
-                 for_evaluation=False):
+def create_dsets(data, train_idx, test_idx, batch_size=512):
     """Create tf train and test datasets for a single fold.
 
     Args:
@@ -79,17 +78,12 @@ def create_dsets(data, train_idx, test_idx, batch_size=512,
         test_idx (list): elements are bools. True for test data,
             False for train data.
         batch_size (int): batch size for model training.
-        for_evaluation (bool): True results in no batch or shuffle.
 
     Returns:
-        if for_evaluation=True:
-            train_dset (list): train_X, train_y as elements.
-            test_dset (list): test_X, test_y as elements.
-        if for_evaluation=False:
-            train_dset (tf dataset): train_X, train_y, train_sample_weights
-                as components.
-            test_dset (tf dataset): test_X, test_y, test_sample_weights as
-                components.
+        train_dset (tf dataset): train_X, train_y, train_sample_weights
+            as components.
+        test_dset (tf dataset): test_X, test_y, test_sample_weights as
+            components.
 
     """
     X = data['X']
@@ -116,18 +110,13 @@ def create_dsets(data, train_idx, test_idx, batch_size=512,
     train_sample_weights = get_sample_weights(train_y, train_subjectIDs)
     test_sample_weights = get_sample_weights(test_y, test_subjectIDs)
     
-    # TODO MIGHT NOT NEED
-    if for_evaluation:
-        train_dset = (train_X, train_y)
-        test_dset = (test_X, test_y)
-    else:
-        train_dset = tf.data.Dataset.from_tensor_slices(
-            (train_X, train_y, train_sample_weights)).shuffle(
-            buffer_size=len(train_X),seed=0).batch(batch_size)
+    train_dset = tf.data.Dataset.from_tensor_slices(
+        (train_X, train_y, train_sample_weights)).shuffle(
+        buffer_size=len(train_X),seed=0).batch(batch_size)
 
-        test_dset = tf.data.Dataset.from_tensor_slices(
-            (test_X, test_y, test_sample_weights)).shuffle(
-            buffer_size=len(test_X),seed=0).batch(batch_size)
+    test_dset = tf.data.Dataset.from_tensor_slices(
+        (test_X, test_y, test_sample_weights)).shuffle(
+        buffer_size=len(test_X),seed=0).batch(batch_size)
 
     return train_dset, test_dset
 
