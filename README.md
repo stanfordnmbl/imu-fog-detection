@@ -109,8 +109,7 @@ The following constants are found across our code and may be important to consid
 
 Please cite our paper in your publications if our repository helps your research.
 
-```TODO```
-
+O’Day, J., Lee, M., Seagers, K. *et al*. Assessing inertial measurement unit locations for freezing of gait detection and patient preference. *J NeuroEngineering Rehabil* **19**, 20 (2022). https://doi.org/10.1186/s12984-022-00992-x
   
 
 # Contact
